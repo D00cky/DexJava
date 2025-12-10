@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class DexJavaPokemonModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "pokedex_id")
