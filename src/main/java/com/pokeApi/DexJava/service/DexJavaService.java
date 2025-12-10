@@ -4,29 +4,44 @@ import com.pokeApi.DexJava.repository.DexJavaRepository;
 import com.pokeApi.DexJava.model.DexJavaPokemonModel;
 import com.pokeApi.DexJava.dto.DexJavaResponseDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestClient;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DexJavaService {
 
-    @Autowired
-    DexJavaRepository repository;
+    private final RestClient restClient;
+    private final DexJavaRepository repository;
 
-    public String findByName(@PathVariable("name") String name) {
-        RestClient restClient = RestClient.create();
-        String pokeName = restClient.get()
-                .uri("https://pokeapi.co/api/v2/pokemon/{name}", name)
-                .accept(MediaType.APPLICATION_JSON)
+    public DexJavaService(RestClient.Builder builder, DexJavaRepository repository) {
+        this.repository = repository;
+        this.restClient = builder.baseUrl("https://pokeapi.co/api/v2/pokemon").build();
+    }
+
+    public DexJavaPokemonModel searchByName(String name) {
+        DexJavaResponseDTO dto = restClient.get()
+                .uri("/{name}",name)
                 .retrieve()
-                .body(String.class);
-        return pokeName;
+                .body(DexJavaResponseDTO.class);
 
-}
+        if (dto == null) return null;
+
+        DexJavaPokemonModel newPokemon = new DexJavaPokemonModel();
+
+        newPokemon.setName(dto.getPokemonName()); //get from the JSON the name, pokedexID and baseXP from the JSON in the DTO.
+        newPokemon.setPokedexId(dto.getPokemonId());
+        newPokemon.setXp(dto.getPokemonBaseXp());
+
+        if(dto.getPokemonAbilities() != null && !dto.getPokemonAbilities().isEmpty()) {
+            String ability = dto.getPokemonAbilities().get(0).getPokemonAbilities().getName();
+            newPokemon.setAbilities(ability);
+        }
+
+        if (dto.getPokemonTypes() != null && !dto.getPokemonTypes().isEmpty()){
+            String type = dto.getPokemonTypes().get(0).getPokemonTypes().getName();
+            newPokemon.setType(type);
+        }
+        return repository.save(newPokemon);
+    }
 }

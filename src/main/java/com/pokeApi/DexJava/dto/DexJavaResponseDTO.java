@@ -29,21 +29,27 @@ public class DexJavaResponseDTO {
     @JsonProperty("types")
     private List<TypesWrapper> pokemonTypes;
 
+    @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class AbilityWrapper{
+        @JsonProperty("ability")
         private AbilityDetail pokemonAbilities;
     }
 
+    @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class AbilityDetail {
         private String name;
     }
 
+    @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class TypesWrapper {
+        @JsonProperty("type")
         private TypesDetail pokemonTypes;
     }
 
+    @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class TypesDetail {
         private String name;
