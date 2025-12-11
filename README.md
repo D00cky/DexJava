@@ -35,7 +35,7 @@ graph LR
 
 ## 🚀 Tech Stack
 * Java 17
-* Spring Boot 3.2 (Web, Data JPA)
+* Spring Boot 4.0 (Web, Data JPA)
 * Spring Framework 6 (RestClient for API consumption)
 * PostgreSQL (Relational Database)
 * Lombok (Boilerplate reduction)
