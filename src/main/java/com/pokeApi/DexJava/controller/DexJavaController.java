@@ -1,14 +1,10 @@
 package com.pokeApi.DexJava.controller;
 
-import com.pokeApi.DexJava.dto.DexJavaResponseDTO;
 import com.pokeApi.DexJava.service.DexJavaService;
 import com.pokeApi.DexJava.model.DexJavaPokemonModel;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
 
 @RestController
 @RequestMapping(path ="/api/pokemons")
@@ -21,9 +17,9 @@ public class DexJavaController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<DexJavaPokemonModel> capture(@PathVariable String name) {
-        DexJavaPokemonModel pokemon = service.searchByName(name);
-        if(pokemon == null) {
+    public ResponseEntity<DexJavaPokemonModel> captureByName(@PathVariable String name) {
+        DexJavaPokemonModel pokemon = service.searchPokemon(name); //takes the name of the pokemon or the pokedex id
+        if(pokemon == null) {                                     //example bulbassaur or pokedex ID:1
             return ResponseEntity.notFound().build();
         }
 

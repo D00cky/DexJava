@@ -7,7 +7,6 @@ import com.pokeApi.DexJava.dto.DexJavaResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
-
 @Service
 public class DexJavaService {
 
@@ -19,7 +18,7 @@ public class DexJavaService {
         this.restClient = builder.baseUrl("https://pokeapi.co/api/v2/pokemon").build();
     }
 
-    public DexJavaPokemonModel searchByName(String name) {
+    public DexJavaPokemonModel searchPokemon(String name) {
         DexJavaResponseDTO dto = restClient.get()
                 .uri("/{name}",name)
                 .retrieve()
