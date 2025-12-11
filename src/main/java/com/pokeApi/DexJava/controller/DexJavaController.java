@@ -6,6 +6,8 @@ import com.pokeApi.DexJava.model.DexJavaPokemonModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path ="/api/pokemons")
 public class DexJavaController {
@@ -24,6 +26,11 @@ public class DexJavaController {
         }
 
         return ResponseEntity.ok(pokemon);
+    }
+
+    @GetMapping("/allpokemons")
+    public List<DexJavaPokemonModel> getAllPokemons() {
+        return service.getAllPokemons();
     }
 }
 

@@ -7,6 +7,9 @@ import com.pokeApi.DexJava.dto.DexJavaResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DexJavaService {
 
@@ -42,5 +45,11 @@ public class DexJavaService {
             newPokemon.setType(type);
         }
         return repository.save(newPokemon);
+    }
+
+    public List<DexJavaPokemonModel> getAllPokemons() {
+        List<DexJavaPokemonModel> allPokemons = new ArrayList<DexJavaPokemonModel>();
+        repository.findAll().forEach(dexJavaPokemonModel -> allPokemons.add(dexJavaPokemonModel));
+        return allPokemons;
     }
 }
