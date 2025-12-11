@@ -102,10 +102,10 @@ cd DexJava
 
 The next planned features are:
 
-[ ] *Dockerization*: Containerize the application and database using Docker Compose.
+[ ] **Dockerization***: Containerize the application and database using Docker Compose.
 
-[ ] *Unit Testing*: Implement tests for the Service layer using JUnit and Mockito.
+[ ] **Unit Testing**: Implement tests for the Service layer using JUnit and Mockito.
 
-[ ] *Exception Handling*: Improve error responses (e.g., Pokémon not found in external API).
+[ ] **Exception Handling**: Improve error responses (e.g., Pokémon not found in external API).
 
 
