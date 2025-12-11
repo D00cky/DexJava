@@ -98,7 +98,7 @@ cd DexJava
 
 ````
 
-### Roadmap
+### 🔧 Roadmap
 
 The next planned features are:
 
@@ -107,3 +107,5 @@ The next planned features are:
 [ ] Unit Testing: Implement tests for the Service layer using JUnit and Mockito.
 
 [ ] Exception Handling: Improve error responses (e.g., Pokémon not found in external API).
+
+
